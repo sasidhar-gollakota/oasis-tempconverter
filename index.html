@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+</head>
+<body>
+    
+    <div class="container">
+        <div class="header">
+            <div class="time">
+                <h4>9:42</h4>
+            </div>
+
+            <div class="header-options">
+                <i class='bx bx-signal-5'></i>
+                <i class='bx bx-wifi' ></i>
+                <i class='bx bxs-battery' ></i>
+
+            </div>
+        </div>
+
+
+        <div class="tittle">
+            <h1>Temperature Converter</h1>
+            <br>
+        </div>
+        <div class="values">
+            <div class="value-headings">
+                <label for="input">Degree</label>
+                <input type="text" id="input">
+            </div>
+            <div class="value-headings">
+                <label for="temperatures">Type</label>
+                <select name="" id="temperatures">
+                    <option value="Fahrenheit">Fahrenheit</option>
+                    <option value="celsius">Celsius</option>
+                </select>
+            </div>
+        </div>
+        <div class="result">
+            <input type="text" id="output" placeholder="Converted Temperature" readonly>
+        </div>
+        <div class="container">
+            <button id="btn" onclick="converter()">Convert</button>
+        </div>
+    </div>
+    <script>
+        function converter() {
+            var select = document.getElementById("temperatures");
+            var temperatureType = select.options[select.selectedIndex].value;
+            var inputValue = parseFloat(document.getElementById("input").value);
+
+            if (isNaN(inputValue)) {
+                alert("Please provide a valid input");
+                return;
+            }
+
+            var convertedTemperature = 0;
+            
+            if (temperatureType === "celsius") {
+                convertedTemperature = (inputValue - 32) * (5 / 9);
+                document.getElementById("output").value = convertedTemperature.toFixed(2) + "°C";
+            } else {
+                convertedTemperature = (inputValue * 9 / 5) + 32;
+                document.getElementById("output").value = convertedTemperature.toFixed(2) + "°F";
+            }
+        }
+
+        function reset() {
+            document.getElementById("input").value = "";
+            document.getElementById("output").value = "";
+        }
+    </script>
+</body>
+</html>
